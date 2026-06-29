@@ -989,6 +989,119 @@ input:focus,textarea:focus{border-color:var(--cyan)}
   }
 }
 
+
+/* FINAL MOBILE PROJECT VISIBILITY FIX */
+@media(max-width:768px){
+  html, body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  .reveal{
+    opacity:1 !important;
+    transform:none !important;
+  }
+
+  #projects{
+    display:block !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    min-height:auto !important;
+  }
+
+  #projects .section-head{
+    display:block !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    margin-bottom:22px !important;
+  }
+
+  #projects .filter-buttons{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    overflow-x:auto !important;
+    gap:10px !important;
+    padding:4px 2px 14px !important;
+    margin-bottom:22px !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  #projects .filter-buttons::-webkit-scrollbar{
+    height:4px;
+  }
+
+  #projects .filter-btn{
+    flex:0 0 auto !important;
+    white-space:nowrap !important;
+    padding:11px 15px !important;
+    font-size:12px !important;
+  }
+
+  #projects .project-grid{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:18px !important;
+    width:100% !important;
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+
+  #projects .project-card{
+    width:100% !important;
+    max-width:100% !important;
+    min-height:auto !important;
+    padding:20px !important;
+    border-radius:24px !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    position:relative !important;
+    transform:none !important;
+  }
+
+  #projects .project-card:not(.hide){
+    display:flex !important;
+    flex-direction:column !important;
+  }
+
+  #projects .project-card.hide{
+    display:none !important;
+  }
+
+  #projects .project-card h3{
+    font-size:19px !important;
+    line-height:1.25 !important;
+  }
+
+  #projects .project-card p{
+    font-size:13px !important;
+    line-height:1.6 !important;
+  }
+
+  #projects .project-links{
+    display:flex !important;
+    flex-direction:row !important;
+    gap:10px !important;
+    width:100% !important;
+  }
+
+  #projects .project-links a{
+    display:flex !important;
+    min-width:0 !important;
+    font-size:12px !important;
+  }
+}
+
+@media(max-width:420px){
+  #projects .project-links{
+    flex-direction:column !important;
+  }
+
+  #projects .project-links a{
+    width:100% !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1683,172 +1796,197 @@ input:focus,textarea:focus{border-color:var(--cyan)}
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 <script>
-const revealItems = document.querySelectorAll(".reveal");
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add("show");
+
+document.addEventListener("DOMContentLoaded", () => {
+  /* Reveal Animation - with mobile fallback */
+  const revealItems = document.querySelectorAll(".reveal");
+
+  if("IntersectionObserver" in window){
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add("show");
+      });
+    }, { threshold: 0.08 });
+
+    revealItems.forEach(item => revealObserver.observe(item));
+  }else{
+    revealItems.forEach(item => item.classList.add("show"));
+  }
+
+  if(window.innerWidth <= 768){
+    revealItems.forEach(item => item.classList.add("show"));
+  }
+
+  /* Hero 3D Card */
+  const stage = document.querySelector(".hero-stage");
+  const card = document.querySelector(".profile-card");
+
+  if(stage && card && window.innerWidth > 768){
+    stage.addEventListener("mousemove", (e) => {
+      const rect = stage.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - .5) * 18;
+      const rotateX = ((y / rect.height) - .5) * -18;
+      card.style.transform = `translateY(38px) rotateY(${rotateY - 8}deg) rotateX(${rotateX + 5}deg)`;
+    });
+
+    stage.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(38px) rotateY(-10deg) rotateX(6deg)";
+    });
+  }
+
+  /* Project Filter - mobile safe */
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  projectCards.forEach(card => card.classList.remove("hide"));
+
+  filterButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+
+      projectCards.forEach(card => {
+        const category = card.dataset.category;
+        if(filter === "all" || category === filter){
+          card.classList.remove("hide");
+        }else{
+          card.classList.add("hide");
+        }
+      });
+    });
   });
-}, { threshold: 0.15 });
-revealItems.forEach(item => revealObserver.observe(item));
 
-const stage = document.querySelector(".hero-stage");
-const card = document.querySelector(".profile-card");
-stage.addEventListener("mousemove", (e) => {
-  const rect = stage.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
-  const rotateY = ((x / rect.width) - .5) * 18;
-  const rotateX = ((y / rect.height) - .5) * -18;
-  card.style.transform = `translateY(38px) rotateY(${rotateY - 8}deg) rotateX(${rotateX + 5}deg)`;
-});
-stage.addEventListener("mouseleave", () => {
-  card.style.transform = "translateY(38px) rotateY(-10deg) rotateX(6deg)";
-});
+  /* Certificate Modal */
+  const certModal = document.getElementById("certModal");
+  const certFrame = document.getElementById("certFrame");
+  const certTitle = document.getElementById("certTitle");
+  const closeCert = document.getElementById("closeCert");
 
-/* Project Filter */
-const filterButtons = document.querySelectorAll(".filter-btn");
-const projectCards = document.querySelectorAll(".project-card");
-
-filterButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    filterButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const filter = btn.dataset.filter;
-
-    projectCards.forEach(card => {
-      if(filter === "all" || card.dataset.category === filter){
-        card.classList.remove("hide");
-      } else {
-        card.classList.add("hide");
+  document.querySelectorAll(".view-cert").forEach(button => {
+    button.addEventListener("click", () => {
+      if(certModal && certFrame && certTitle){
+        certFrame.src = button.dataset.pdf;
+        certTitle.textContent = button.dataset.title;
+        certModal.classList.add("show");
       }
     });
   });
-});
 
-/* Certificate Modal */
-const certModal = document.getElementById("certModal");
-const certFrame = document.getElementById("certFrame");
-const certTitle = document.getElementById("certTitle");
-const closeCert = document.getElementById("closeCert");
+  function closeCertificate(){
+    if(certModal) certModal.classList.remove("show");
+    if(certFrame) certFrame.src = "";
+  }
 
-document.querySelectorAll(".view-cert").forEach(button => {
-  button.addEventListener("click", () => {
-    certFrame.src = button.dataset.pdf;
-    certTitle.textContent = button.dataset.title;
-    certModal.classList.add("show");
+  if(closeCert) closeCert.addEventListener("click", closeCertificate);
+
+  if(certModal){
+    certModal.addEventListener("click", (e) => {
+      if(e.target === certModal) closeCertificate();
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if(e.key === "Escape") closeCertificate();
   });
-});
 
-function closeCertificate(){
-  certModal.classList.remove("show");
-  certFrame.src = "";
-}
+  /* Contact Form Success / Fail Notification */
+  const contactForm = document.querySelector(".form");
+  const formStatus = document.getElementById("formStatus");
 
-closeCert.addEventListener("click", closeCertificate);
-certModal.addEventListener("click", (e) => {
-  if(e.target === certModal) closeCertificate();
-});
-document.addEventListener("keydown", (e) => {
-  if(e.key === "Escape") closeCertificate();
-});
+  if(contactForm && formStatus){
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-/* Contact Form Success / Fail Notification */
-const contactForm = document.querySelector(".form");
-const formStatus = document.getElementById("formStatus");
+      formStatus.className = "form-status";
+      formStatus.style.display = "block";
+      formStatus.textContent = "Sending your message...";
 
-if(contactForm){
-  contactForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      const submitBtn = contactForm.querySelector("button");
+      if(submitBtn){
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending...";
+      }
 
-    formStatus.className = "form-status";
-    formStatus.textContent = "Sending your message...";
-
-    const submitBtn = contactForm.querySelector("button");
-    submitBtn.disabled = true;
-    submitBtn.textContent = "Sending...";
-
-    try{
-      const formData = new FormData(contactForm);
-      const response = await fetch(contactForm.action, {
-        method: "POST",
-        body: formData
-      });
-
-      const result = await response.json();
-
-      if(result.success){
-        formStatus.className = "form-status success";
-        formStatus.textContent = "Your message is sent successfully.";
-        contactForm.reset();
-
-        contactForm.querySelectorAll("input:not([type='hidden']), textarea").forEach(field => {
-          field.value = "";
+      try{
+        const formData = new FormData(contactForm);
+        const response = await fetch(contactForm.action, {
+          method: "POST",
+          body: formData
         });
-      }else{
+
+        const result = await response.json();
+
+        if(result.success){
+          formStatus.className = "form-status success";
+          formStatus.textContent = "Your message is sent successfully.";
+          contactForm.reset();
+          contactForm.querySelectorAll("input:not([type='hidden']), textarea").forEach(field => {
+            field.value = "";
+          });
+        }else{
+          formStatus.className = "form-status error";
+          formStatus.textContent = "Message failed. Please try again.";
+        }
+      }catch(error){
         formStatus.className = "form-status error";
-        formStatus.textContent = "Message failed. Please try again.";
+        formStatus.textContent = "Message failed. Check your internet or try again.";
+      }finally{
+        if(submitBtn){
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message →";
+        }
       }
-    }catch(error){
-      formStatus.className = "form-status error";
-      formStatus.textContent = "Message failed. Check your internet or try again.";
-    }finally{
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send Message →";
-    }
-  });
-}
+    });
+  }
 
+  /* Navbar Smooth Scroll */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e){
+      const targetId = this.getAttribute("href");
+      if(targetId.length > 1){
+        const section = document.querySelector(targetId);
+        if(section){
+          e.preventDefault();
 
-/* Navbar Smooth Scroll - exact title position */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e){
-    const targetId = this.getAttribute("href");
-    if(targetId.length > 1){
-      const section = document.querySelector(targetId);
-      if(section){
-        e.preventDefault();
+          const header = document.querySelector(".header");
+          const headerHeight = header ? header.offsetHeight : 76;
+          const focusEl = section.querySelector(".section-head") || section.querySelector(".kicker") || section;
+          const safeGap = window.innerWidth <= 720 ? 14 : 22;
+          const top = focusEl.getBoundingClientRect().top + window.scrollY - headerHeight - safeGap;
 
-        const header = document.querySelector(".header");
-        const headerHeight = header ? header.offsetHeight : 76;
-
-        let focusEl = section.querySelector(".section-head") || section.querySelector(".kicker") || section;
-        let safeGap = window.innerWidth <= 720 ? 16 : 22;
-
-        const top = focusEl.getBoundingClientRect().top + window.scrollY - headerHeight - safeGap;
-
-        window.scrollTo({
-          top: Math.max(top, 0),
-          behavior: "smooth"
-        });
+          window.scrollTo({
+            top: Math.max(top, 0),
+            behavior: "smooth"
+          });
+        }
       }
-    }
+    });
   });
+
+  /* Auto Project Count */
+  const projectCountEl = document.getElementById("projectCount");
+  if(projectCountEl){
+    const totalProjects = document.querySelectorAll(".project-card").length;
+    projectCountEl.textContent = totalProjects;
+  }
+
+  /* Hero card hover fallback */
+  const mainProfileCard = document.querySelector(".profile-card");
+  const heroStageForCards = document.querySelector(".hero-stage");
+
+  if(mainProfileCard && heroStageForCards){
+    mainProfileCard.addEventListener("mouseenter", () => {
+      heroStageForCards.classList.add("main-card-hover");
+    });
+    mainProfileCard.addEventListener("mouseleave", () => {
+      heroStageForCards.classList.remove("main-card-hover");
+    });
+  }
 });
-
-
-
-/* Auto Project Count */
-const projectCountEl = document.getElementById("projectCount");
-if(projectCountEl){
-  const totalProjects = document.querySelectorAll(".project-card").length;
-  projectCountEl.textContent = totalProjects;
-}
-
-
-
-/* Hero card hover fallback: hide side cards */
-const mainProfileCard = document.querySelector(".profile-card");
-const heroStageForCards = document.querySelector(".hero-stage");
-
-if(mainProfileCard && heroStageForCards){
-  mainProfileCard.addEventListener("mouseenter", () => {
-    heroStageForCards.classList.add("main-card-hover");
-  });
-  mainProfileCard.addEventListener("mouseleave", () => {
-    heroStageForCards.classList.remove("main-card-hover");
-  });
-}
 
 </script>
 
