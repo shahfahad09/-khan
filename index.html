@@ -681,7 +681,8 @@ input:focus,textarea:focus{border-color:var(--cyan)}
   letter-spacing:.5px;
 }
 
-.stats .stat h3 #projectCount{
+.stats .stat h3 #projectCount,
+.stats .stat h3 #skillCount{
   font-size:54px !important;
   font-weight:900;
 }
@@ -729,7 +730,8 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     font-size:40px !important;
   }
 
-  .stats .stat h3 #projectCount{
+  .stats .stat h3 #projectCount,
+.stats .stat h3 #skillCount{
     font-size:48px !important;
   }
 
@@ -1252,7 +1254,7 @@ input:focus,textarea:focus{border-color:var(--cyan)}
 </p>
       <div class="stats">
         <div class="stat"><h3><span id="projectCount">0</span>+</h3><span>Projects</span></div>
-        <div class="stat"><h3>16+</h3><span>Skills</span></div>
+        <div class="stat"><h3><span id="skillCount">0</span>+</h3><span>Skills</span></div>
         <div class="stat"><h3>Ready</h3><span>Open to Work</span></div>
       </div>
     </div>
@@ -2085,6 +2087,13 @@ document.addEventListener("DOMContentLoaded", () => {
   if(projectCountEl){
     const totalProjects = document.querySelectorAll(".project-card").length;
     projectCountEl.textContent = totalProjects;
+  }
+
+  /* Auto Skill Count */
+  const skillCountEl = document.getElementById("skillCount");
+  if(skillCountEl){
+    const totalSkills = document.querySelectorAll(".skill-chip").length;
+    skillCountEl.textContent = totalSkills;
   }
 
   /* Hero card hover fallback */
