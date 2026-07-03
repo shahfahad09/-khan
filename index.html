@@ -379,7 +379,7 @@ body::after{
 .timeline-item p{color:var(--muted);line-height:1.7;margin-top:10px}
 
 /* SKILLS */
-.skill-category-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.skill-category-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .skill-category{
   padding:28px;border-radius:32px;background:linear-gradient(145deg,#121212,#070707);border:1px solid var(--line);
 }
@@ -625,9 +625,8 @@ input:focus,textarea:focus{border-color:var(--cyan)}
 @media(max-width:1050px){
   .hero,.about-grid,.timeline-grid,.contact-box{grid-template-columns:1fr}
   .hero-text{text-align:center}.hero-desc{margin-left:auto;margin-right:auto}.hero-actions{justify-content:center}
-  .service-grid,.certificate-grid{grid-template-columns:repeat(2,1fr)}
+  .service-grid,.skill-category-grid,.certificate-grid{grid-template-columns:repeat(2,1fr)}
   .project-grid{grid-template-columns:repeat(2,1fr)}
-  .skill-category-grid{grid-template-columns:1fr}
 }
 @media(max-width:720px){
   .header{
@@ -659,7 +658,7 @@ input:focus,textarea:focus{border-color:var(--cyan)}
   .profile-card::after{font-size:82px}
   .avatar-circle{width:106px;height:106px;border-radius:28px}
   .float-card{display:none}
-  .service-grid,.project-grid,.certificate-grid,.stats,.input-row{grid-template-columns:1fr}
+  .service-grid,.skill-category-grid,.project-grid,.certificate-grid,.stats,.input-row{grid-template-columns:1fr}
   .role{letter-spacing:4px;font-size:15px}
   .logo{font-size:27px}
   .hero-actions{gap:10px}
@@ -1102,6 +1101,67 @@ input:focus,textarea:focus{border-color:var(--cyan)}
   }
 }
 
+
+/* ML / DATA SCIENCE FINAL UPDATE */
+.role{
+  white-space:nowrap;
+  font-size:clamp(15px, 1.55vw, 20px);
+  letter-spacing:clamp(2px, .45vw, 7px);
+}
+
+.service-grid{
+  grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+  align-items:stretch;
+}
+
+.skill-category-grid{
+  grid-template-columns:repeat(4, minmax(0, 1fr)) !important;
+  align-items:stretch;
+}
+
+.service-card,
+.skill-category{
+  height:100%;
+}
+
+.skill-category{
+  padding:22px;
+}
+
+.skill-category h3{
+  font-size:18px;
+  line-height:1.25;
+}
+
+.skills-wrap{
+  gap:10px;
+}
+
+.skill-chip{
+  padding:10px 12px;
+  font-size:12px;
+}
+
+@media(max-width:1200px){
+  .service-grid,
+  .skill-category-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media(max-width:720px){
+  .role{
+    white-space:normal;
+    line-height:1.5;
+    letter-spacing:3px;
+  }
+
+  .service-grid,
+  .skill-category-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1118,7 +1178,7 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     <a href="#certificates">Certificates</a>
     <a href="#contact">Contact</a>
   </nav>
-  <a class="nav-cta" href="MdShahfahadKhan_DataAnalyst_Resume.pdf" download>Download CV</a>
+  <a class="nav-cta" href="MdShahfahadKhan_AI_ML_Resume.pdf" download>Download CV</a>
 </header>
 
 <main>
@@ -1132,7 +1192,7 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </h1>
     <h2 class="role">Machine Learning Engineer | Data Scientist</h2>
     <p class="hero-desc">
-     BCA graduate passionate about Machine Learning, Artificial Intelligence, and Data Science. I work on data preprocessing, feature engineering, model training, and evaluation using Python, scikit-learn, SQL, and Git — currently learning deployment with Flask.
+     BCA graduate passionate about Machine Learning, Artificial Intelligence, and Data Science. I build end-to-end ML solutions using Python, Scikit-learn, SQL, Flask, and modern AI tools — from data preprocessing and feature engineering to model training, evaluation, and deployment.
     </p>
 
     <div class="hero-actions">
@@ -1200,7 +1260,7 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     <div class="info-stack">
       <div class="info-box"><ion-icon name="school-outline"></ion-icon><div><h3>BCA Graduate</h3><p>Chandigarh University • 2023 — 2026 </p></div></div>
       <div class="info-box"><ion-icon name="location-outline"></ion-icon><div><h3>Location</h3> <p>Delhi, India • Open to Machine Learning, AI & Data Science opportunities.</p></div></div>
-      <div class="info-box"><ion-icon name="briefcase-outline"></ion-icon><div><h3>Availability</h3><p>Open to internships, fresher roles and entry-level data analyst opportunities.</p></div></div>
+      <div class="info-box"><ion-icon name="briefcase-outline"></ion-icon><div><h3>Availability</h3><p>Open to internships, fresher roles and entry-level Machine Learning, AI & Data Science opportunities.</p></div></div>
     </div>
   </div>
 </section>
@@ -1213,94 +1273,117 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
   </div>
 
-<div class="service-grid">
+  <div class="service-grid">
 
-  <div class="service-card">
-    <ion-icon name="hardware-chip-outline"></ion-icon>
-    <h3>Machine Learning</h3>
-    <p>Building regression and classification models using Scikit-learn, feature engineering, model evaluation and hyperparameter tuning.</p>
+    <div class="service-card">
+      <ion-icon name="hardware-chip-outline"></ion-icon>
+      <h3>Machine Learning</h3>
+      <p>Building regression, classification and clustering models using Scikit-learn, feature engineering, model evaluation and tuning.</p>
+    </div>
+
+    <div class="service-card">
+      <ion-icon name="sparkles-outline"></ion-icon>
+      <h3>Generative AI</h3>
+      <p>Working with LLMs, RAG, prompt engineering, LangChain, Hugging Face and vector databases for AI-powered applications.</p>
+    </div>
+
+    <div class="service-card">
+      <ion-icon name="git-network-outline"></ion-icon>
+      <h3>Deep Learning</h3>
+      <p>Building AI workflows using TensorFlow, Keras, PyTorch, CNN, RNN, LSTM, NLP and computer vision concepts.</p>
+    </div>
+
+    <div class="service-card">
+      <ion-icon name="rocket-outline"></ion-icon>
+      <h3>Model Deployment</h3>
+      <p>Deploying machine learning applications using Flask, FastAPI, Docker, GitHub, Render and cloud-based workflows.</p>
+    </div>
+
   </div>
-
-  <div class="service-card">
-    <ion-icon name="analytics-outline"></ion-icon>
-    <h3>Data Science</h3>
-    <p>Data cleaning, exploratory data analysis (EDA), preprocessing and extracting meaningful insights from real-world datasets.</p>
-  </div>
-
-  <div class="service-card">
-    <ion-icon name="code-slash-outline"></ion-icon>
-    <h3>Model Deployment</h3>
-    <p>Deploying machine learning applications using Flask, REST APIs, GitHub and cloud platforms.</p>
-  </div>
-
-  <div class="service-card">
-    <ion-icon name="server-outline"></ion-icon>
-    <h3>Python & SQL</h3>
-    <p>Data manipulation with Python, efficient SQL queries, database management and automation for ML workflows.</p>
-  </div>
-
-  <div class="service-card">
-  <ion-icon name="sparkles-outline"></ion-icon>
-  <h3>Artificial Intelligence</h3>
-  <p>Developing intelligent AI solutions using modern machine learning techniques and predictive modeling.</p>
-</div>
-
-</div>
 </section>
 
 <section class="section reveal" id="skills">
   <div class="section-head">
     <div>
       <p class="label">Skills</p>
-      <h2>Skill Stack</h2>
+      <h2>AI / ML Skill Stack</h2>
     </div>
-    <!-- <p class="section-desc">Skills are grouped properly so HR can quickly understand your Data Analyst profile.</p> -->
   </div>
 
   <div class="skill-category-grid">
-    <div class="skill-category">
-      <h3><span>01.</span> Data Analysis</h3>
-      <div class="skills-wrap">
-        <div class="skill-chip">Excel</div>
-        <div class="skill-chip">Power BI</div>
-        <div class="skill-chip">DAX</div>
-        <div class="skill-chip">EDA</div>
-        <div class="skill-chip">Data Cleaning</div>
-        <div class="skill-chip">Data Visualization</div>
-        <div class="skill-chip">Dashboarding</div>
-        <div class="skill-chip">Business Insights</div>
-      </div>
-    </div>
 
     <div class="skill-category">
-      <h3><span>02.</span> Programming & Database</h3>
+      <h3><span>01.</span> Programming & Data Science</h3>
       <div class="skills-wrap">
         <div class="skill-chip">Python</div>
+        <div class="skill-chip">SQL</div>
         <div class="skill-chip">Pandas</div>
         <div class="skill-chip">NumPy</div>
         <div class="skill-chip">Matplotlib</div>
         <div class="skill-chip">Seaborn</div>
-        <div class="skill-chip">SQL</div>
-        <div class="skill-chip">MySQL</div>
-        <div class="skill-chip">PostgreSQL</div>
-        <div class="skill-chip">Java</div>
-        <div class="skill-chip">C++</div>
+        <div class="skill-chip">EDA</div>
+        <div class="skill-chip">Data Cleaning</div>
+        <div class="skill-chip">Data Preprocessing</div>
+        <div class="skill-chip">Feature Engineering</div>
+        <div class="skill-chip">Data Visualization</div>
+        <div class="skill-chip">Statistical Analysis</div>
       </div>
     </div>
 
     <div class="skill-category">
-      <h3><span>03.</span> Machine Learning</h3>
+      <h3><span>02.</span> Machine Learning & AI</h3>
       <div class="skills-wrap">
         <div class="skill-chip">Scikit-learn</div>
         <div class="skill-chip">Regression</div>
         <div class="skill-chip">Classification</div>
+        <div class="skill-chip">Clustering</div>
         <div class="skill-chip">Random Forest</div>
-        <div class="skill-chip">Feature Engineering</div>
+        <div class="skill-chip">Decision Trees</div>
+        <div class="skill-chip">SVM</div>
+        <div class="skill-chip">KNN</div>
+        <div class="skill-chip">XGBoost</div>
         <div class="skill-chip">Model Evaluation</div>
-        <div class="skill-chip">TensorFlow Basics</div>
-        <div class="skill-chip">Keras Basics</div>
+        <div class="skill-chip">Hyperparameter Tuning</div>
+        <div class="skill-chip">Model Deployment</div>
       </div>
     </div>
+
+    <div class="skill-category">
+      <h3><span>03.</span> Deep Learning & GenAI</h3>
+      <div class="skills-wrap">
+        <div class="skill-chip">TensorFlow</div>
+        <div class="skill-chip">Keras</div>
+        <div class="skill-chip">PyTorch</div>
+        <div class="skill-chip">CNN</div>
+        <div class="skill-chip">RNN</div>
+        <div class="skill-chip">LSTM</div>
+        <div class="skill-chip">NLP</div>
+        <div class="skill-chip">Transformers</div>
+        <div class="skill-chip">LLMs</div>
+        <div class="skill-chip">RAG</div>
+        <div class="skill-chip">LangChain</div>
+        <div class="skill-chip">Hugging Face</div>
+      </div>
+    </div>
+
+    <div class="skill-category">
+      <h3><span>04.</span> Tools & Platforms</h3>
+      <div class="skills-wrap">
+        <div class="skill-chip">Git</div>
+        <div class="skill-chip">GitHub</div>
+        <div class="skill-chip">Docker</div>
+        <div class="skill-chip">Flask</div>
+        <div class="skill-chip">FastAPI</div>
+        <div class="skill-chip">Jupyter Notebook</div>
+        <div class="skill-chip">Google Colab</div>
+        <div class="skill-chip">VS Code</div>
+        <div class="skill-chip">PostgreSQL</div>
+        <div class="skill-chip">MySQL</div>
+        <div class="skill-chip">Power BI</div>
+        <div class="skill-chip">Excel</div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1328,36 +1411,18 @@ input:focus,textarea:focus{border-color:var(--cyan)}
 <section class="section reveal" id="projects">
   <div class="section-head">
     <div><p class="label">Projects</p><h2>Featured Work</h2></div>
-    <!-- <p class="section-desc">Projects are divided into Data Analysis, Machine Learning, Web Development and Programming.</p> -->
+    <!-- <p class="section-desc">Projects are ordered by Machine Learning, Data Analysis, Web Development and Programming.</p> -->
   </div>
 
   <div class="filter-buttons">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="data-analysis">Data Analyst</button>
     <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
+    <button class="filter-btn" data-filter="data-analysis">Data Analysis</button>
     <button class="filter-btn" data-filter="web-development">Web Development</button>
     <button class="filter-btn" data-filter="programming">Programming</button>
   </div>
 
   <div class="project-grid">
-    <div class="project-card" data-category="data-analysis">
-      <div class="project-icon"><ion-icon name="bar-chart-outline"></ion-icon></div>
-      <h3>Retail Sales Analytics & Insights</h3>
-      <div class="project-category">Data Analysis</div>
-      <div class="project-tech">Python • Pandas • SQL • Matplotlib • Seaborn • Excel</div>
-      <p>Analyzed 9,994 sales records to identify revenue trends, loss-making sub-categories and discount impact.</p>
-      <div class="project-links">
-      <a href="https://www.kaggle.com/code/mdshahfahadkhan/retail-sales-analytics-insights" target="_blank" class="live-btn">
-        <ion-icon name="globe-outline"></ion-icon>
-        Live Demo
-      </a>
-      <a href="https://github.com/shahfahad09/Retail-Sales-Analytics-Insights.git" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div>
-
     <div class="project-card" data-category="machine-learning">
       <div class="project-icon"><ion-icon name="home-outline"></ion-icon></div>
       <h3>House Rent Price Prediction</h3>
@@ -1376,7 +1441,97 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
-     <div class="project-card" data-category="data-analysis">
+    <div class="project-card" data-category="machine-learning">
+      <div class="project-icon"><ion-icon name="hand-left-outline"></ion-icon></div>
+      <h3>Hand Gesture Recognition</h3>
+      <div class="project-category">Machine Learning</div>
+      <div class="project-tech">Python • Jupyter Notebook • ML • Computer Vision</div>
+      <p>Machine learning project for recognizing hand gestures using image-based data and model training workflow.</p>
+      <div class="project-links">
+      <!-- <a href="#" class="live-btn disabled">
+        <ion-icon name="time-outline"></ion-icon>
+        Coming Soon
+      </a> -->
+      <a href="https://github.com/shahfahad09/Hand-Gesture-Recognition" target="_blank" class="github-btn">
+        <ion-icon name="logo-github"></ion-icon>
+        GitHub
+      </a>
+    </div>
+</div>
+
+    <div class="project-card" data-category="machine-learning">
+      <div class="project-icon"><ion-icon name="images-outline"></ion-icon></div>
+      <h3>Cat vs Dog Image Classification</h3>
+      <div class="project-category">Machine Learning</div>
+      <div class="project-tech">Python • SVM • Image Classification • Jupyter Notebook</div>
+      <p>Image classification project using SVM to classify cat and dog images with feature extraction and model evaluation.</p>
+      <div class="project-links">
+      <!-- <a href="#" class="live-btn disabled">
+        <ion-icon name="time-outline"></ion-icon>
+        Coming Soon
+      </a> -->
+      <a href="https://github.com/shahfahad09/Cat-vs-Dog-Image-Classification-using-SVM" target="_blank" class="github-btn">
+        <ion-icon name="logo-github"></ion-icon>
+        GitHub
+      </a>
+    </div>
+</div>
+
+    <div class="project-card" data-category="machine-learning">
+      <div class="project-icon"><ion-icon name="people-outline"></ion-icon></div>
+      <h3>Mall Customer Segmentation</h3>
+      <div class="project-category">Machine Learning</div>
+      <div class="project-tech">Python • Clustering • Customer Segmentation • EDA</div>
+      <p>Customer segmentation project to group mall customers based on patterns and support business targeting decisions.</p>
+      <div class="project-links">
+      <!-- <a href="#" class="live-btn disabled">
+        <ion-icon name="time-outline"></ion-icon>
+        Coming Soon
+      </a> -->
+      <a href="https://github.com/shahfahad09/Mall-Customer-Segmentation" target="_blank" class="github-btn">
+        <ion-icon name="logo-github"></ion-icon>
+        GitHub
+      </a>
+    </div>
+</div>
+
+    <div class="project-card" data-category="machine-learning">
+      <div class="project-icon"><ion-icon name="home-outline"></ion-icon></div>
+      <h3>House Price Prediction</h3>
+      <div class="project-category">Machine Learning</div>
+      <div class="project-tech">Python • Regression • Jupyter Notebook • ML</div>
+      <p>Predictive machine learning project for estimating house prices using regression-based modeling techniques.</p>
+      <div class="project-links">
+      <!-- <a href="#" class="live-btn disabled">
+        <ion-icon name="time-outline"></ion-icon>
+        Coming Soon
+      </a> -->
+      <a href="https://github.com/shahfahad09/house_price_prediction" target="_blank" class="github-btn">
+        <ion-icon name="logo-github"></ion-icon>
+        GitHub
+      </a>
+    </div>
+</div>
+
+    <div class="project-card" data-category="data-analysis">
+      <div class="project-icon"><ion-icon name="bar-chart-outline"></ion-icon></div>
+      <h3>Retail Sales Analytics & Insights</h3>
+      <div class="project-category">Data Analysis</div>
+      <div class="project-tech">Python • Pandas • SQL • Matplotlib • Seaborn • Excel</div>
+      <p>Analyzed 9,994 sales records to identify revenue trends, loss-making sub-categories and discount impact.</p>
+      <div class="project-links">
+      <a href="https://www.kaggle.com/code/mdshahfahadkhan/retail-sales-analytics-insights" target="_blank" class="live-btn">
+        <ion-icon name="globe-outline"></ion-icon>
+        Live Demo
+      </a>
+      <a href="https://github.com/shahfahad09/Retail-Sales-Analytics-Insights.git" target="_blank" class="github-btn">
+        <ion-icon name="logo-github"></ion-icon>
+        GitHub
+      </a>
+    </div>
+</div>
+
+    <div class="project-card" data-category="data-analysis">
       <div class="project-icon"><ion-icon name="barbell-outline"></ion-icon></div>
       <h3>Gym Management</h3>
       <div class="project-category">Data Analysis</div>
@@ -1395,8 +1550,24 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
+    <div class="project-card" data-category="data-analysis">
+      <div class="project-icon"><ion-icon name="analytics-outline"></ion-icon></div>
+      <h3>Classroom Progress Dashboard</h3>
+      <div class="project-category">Data Analysis</div>
+      <div class="project-tech">Excel • Dashboard • Data Cleaning • Reporting</div>
+      <p>Dashboard-style project focused on tracking classroom progress, performance summary and reporting insights.</p>
+      <div class="project-links">
+      <!-- <a href="#" class="live-btn disabled">
+        <ion-icon name="time-outline"></ion-icon>
+        Coming Soon
+      </a> -->
+      <a href="https://github.com/shahfahad09/Classroom-Progress-Dashboard" target="_blank" class="github-btn">
+        <ion-icon name="logo-github"></ion-icon>
+        GitHub
+      </a>
+    </div>
+</div>
 
-    
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="cloud-outline"></ion-icon></div>
       <h3>Weather Checking</h3>
@@ -1432,104 +1603,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
       </a>
     </div>
 </div>
-  
-    <div class="project-card" data-category="data-analysis">
-      <div class="project-icon"><ion-icon name="analytics-outline"></ion-icon></div>
-      <h3>Classroom Progress Dashboard</h3>
-      <div class="project-category">Data Analysis</div>
-      <div class="project-tech">Excel • Dashboard • Data Cleaning • Reporting</div>
-      <p>Dashboard-style project focused on tracking classroom progress, performance summary and reporting insights.</p>
-      <div class="project-links">
-      <!-- <a href="#" class="live-btn disabled">
-        <ion-icon name="time-outline"></ion-icon>
-        Coming Soon
-      </a> -->
-      <a href="https://github.com/shahfahad09/Classroom-Progress-Dashboard" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div>
-
-
-    <div class="project-card" data-category="machine-learning">
-      <div class="project-icon"><ion-icon name="hand-left-outline"></ion-icon></div>
-      <h3>Hand Gesture Recognition</h3>
-      <div class="project-category">Machine Learning</div>
-      <div class="project-tech">Python • Jupyter Notebook • ML • Computer Vision</div>
-      <p>Machine learning project for recognizing hand gestures using image-based data and model training workflow.</p>
-      <div class="project-links">
-      <!-- <a href="#" class="live-btn disabled">
-        <ion-icon name="time-outline"></ion-icon>
-        Coming Soon
-      </a> -->
-      <a href="https://github.com/shahfahad09/Hand-Gesture-Recognition" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div>
-
-
-    <div class="project-card" data-category="machine-learning">
-      <div class="project-icon"><ion-icon name="images-outline"></ion-icon></div>
-      <h3>Cat vs Dog Image Classification</h3>
-      <div class="project-category">Machine Learning</div>
-      <div class="project-tech">Python • SVM • Image Classification • Jupyter Notebook</div>
-      <p>Image classification project using SVM to classify cat and dog images with feature extraction and model evaluation.</p>
-      <div class="project-links">
-      <!-- <a href="#" class="live-btn disabled">
-        <ion-icon name="time-outline"></ion-icon>
-        Coming Soon
-      </a> -->
-      <a href="https://github.com/shahfahad09/Cat-vs-Dog-Image-Classification-using-SVM" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div>
-
-
-    <div class="project-card" data-category="machine-learning">
-      <div class="project-icon"><ion-icon name="people-outline"></ion-icon></div>
-      <h3>Mall Customer Segmentation</h3>
-      <div class="project-category">Machine Learning</div>
-      <div class="project-tech">Python • Clustering • Customer Segmentation • EDA</div>
-      <p>Customer segmentation project to group mall customers based on patterns and support business targeting decisions.</p>
-      <div class="project-links">
-      <!-- <a href="#" class="live-btn disabled">
-        <ion-icon name="time-outline"></ion-icon>
-        Coming Soon
-      </a> -->
-      <a href="https://github.com/shahfahad09/Mall-Customer-Segmentation" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div>
-
-
-    <div class="project-card" data-category="machine-learning">
-      <div class="project-icon"><ion-icon name="home-outline"></ion-icon></div>
-      <h3>House Price Prediction</h3>
-      <div class="project-category">Machine Learning</div>
-      <div class="project-tech">Python • Regression • Jupyter Notebook • ML</div>
-      <p>Predictive machine learning project for estimating house prices using regression-based modeling techniques.</p>
-      <div class="project-links">
-      <!-- <a href="#" class="live-btn disabled">
-        <ion-icon name="time-outline"></ion-icon>
-        Coming Soon
-      </a> -->
-      <a href="https://github.com/shahfahad09/house_price_prediction" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div>
-
-
-
-
 
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="pizza-outline"></ion-icon></div>
@@ -1549,7 +1622,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
-
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="restaurant-outline"></ion-icon></div>
       <h3>Laravel Pizza Website</h3>
@@ -1567,7 +1639,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
       </a>
     </div>
 </div>
-
 
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="fast-food-outline"></ion-icon></div>
@@ -1587,27 +1658,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
-
-    <!-- <div class="project-card" data-category="data-analysis">
-      <div class="project-icon"><ion-icon name="barbell-outline"></ion-icon></div>
-      <h3>Gym Management</h3>
-      <div class="project-category">Web Development</div>
-      <div class="project-tech">Web Project • Management System • UI</div>
-      <p>Management-system style project for gym-related records, sections and user interface workflow.</p>
-      <div class="project-links">
-        <a href="https://gymmanagement--khannishu522.replit.app" target="_blank" class="live-btn">
-        <ion-icon name="globe-outline"></ion-icon>
-        Live Demo
-      </a>
-      
-      <a href="https://github.com/shahfahad09/GYM_MANAGEMENT" target="_blank" class="github-btn">
-        <ion-icon name="logo-github"></ion-icon>
-        GitHub
-      </a>
-    </div>
-</div> -->
-
-
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="airplane-outline"></ion-icon></div>
       <h3>Tourly Travel Agency</h3>
@@ -1626,7 +1676,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
-
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="calculator-outline"></ion-icon></div>
       <h3>Web Calculator</h3>
@@ -1644,7 +1693,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
       </a>
     </div>
 </div>
-
 
     <div class="project-card" data-category="web-development">
       <div class="project-icon"><ion-icon name="storefront-outline"></ion-icon></div>
@@ -1665,7 +1713,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
-
     <div class="project-card" data-category="programming">
       <div class="project-icon"><ion-icon name="code-slash-outline"></ion-icon></div>
       <h3>Java Simple Calculator</h3>
@@ -1683,7 +1730,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
       </a>
     </div>
 </div>
-
 
     <div class="project-card" data-category="programming">
       <div class="project-icon"><ion-icon name="train-outline"></ion-icon></div>
@@ -1703,7 +1749,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
     </div>
 </div>
 
-
     <div class="project-card" data-category="programming">
       <div class="project-icon"><ion-icon name="earth-outline"></ion-icon></div>
       <h3>Country Find</h3>
@@ -1721,7 +1766,6 @@ input:focus,textarea:focus{border-color:var(--cyan)}
       </a>
     </div>
 </div>
-
 
     <div class="project-card" data-category="programming">
       <div class="project-icon"><ion-icon name="musical-notes-outline"></ion-icon></div>
